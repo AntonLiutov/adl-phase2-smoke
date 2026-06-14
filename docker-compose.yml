@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+    image: agentic-small-app-web:latest
+    container_name: agentic-small-app-web
+    env_file:
+      - .env
+    ports:
+      - "${PORT:-8000}:8000"
