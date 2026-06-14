@@ -1,0 +1,27 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+build/
+# ADL secrets safety — never commit credentials
+.env
+.env.*
+*.env
+agent-runtime.env
+*.key
+*.pem
+*.pfx
+*.p12
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+*.secret
+.secrets/
+secrets/
+credentials.json
+.npmrc
+.pypirc

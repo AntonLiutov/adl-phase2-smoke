@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: agentic-generated-project-web:latest
+    container_name: agentic-generated-project-web
+    environment:
+      HOST: ${HOST:-0.0.0.0}
+      PORT: ${PORT:-8000}
+    ports:
+      - "${PORT:-8000}:8000"

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="app card">
+        <section class="hero">
+          <p class="eyebrow">Sprint 01 / Core Task Flow</p>
+          <div class="hero-copy">
+            <div>
+              <h1>Keep the list moving.</h1>
+              <p class="hero-text">
+                Add tasks, update progress, and keep a clean record in the same
+                browser session.
+              </p>
+            </div>
+            <div class="hero-stats" aria-label="Task summary">
+              <div class="stat">
+                <span class="eyebrow">Total</span>
+                <strong id="total-count" class="nums">0</strong>
+              </div>
+              <div class="stat">
+                <span class="eyebrow">Done</span>
+                <strong id="done-count" class="nums">0</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="composer card" aria-label="Add task">
+          <form id="task-form" class="task-form">
+            <label class="field">
+              <span class="eyebrow">New task</span>
+              <input
+                id="task-input"
+                class="input"
+                name="title"
+                type="text"
+                maxlength="120"
+                placeholder="Draft QA checklist"
+                autocomplete="off"
+              />
+            </label>
+            <button class="btn" type="submit">Add task</button>
+          </form>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="board">
+          <div class="board-header">
+            <div>
+              <p class="eyebrow">Task list</p>
+              <h2>Current tasks</h2>
+            </div>
+            <p class="board-note">
+              Saved in this browser only. Reordering arrives in the next slice.
+            </p>
+          </div>
+
+          <div class="list-frame card">
+            <ul id="task-list" class="task-list" aria-live="polite"></ul>
+            <div id="empty-state" class="empty-state">
+              <p class="empty-title">No tasks yet</p>
+              <p class="empty-text">
+                Add your first task to start tracking work in this browser.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
