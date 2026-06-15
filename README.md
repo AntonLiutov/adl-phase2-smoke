@@ -7,17 +7,18 @@ Reordering, dedicated scroll-container behavior, and final visual polish are int
 ## Run locally
 
 ```bash
-uv sync
-uv run todo-app
+uv run --no-project scripts/serve.py
 ```
 
 Open `http://localhost:8000`.
 
+This `F1` slice is a static SPA under `web/`, so local serving does not require `uv sync`.
+If port `8000` is already in use, set `PORT` first, for example `set PORT=8010` in PowerShell before running the command.
+
 If `uv` is not available:
 
 ```bash
-pip install -e .
-python -m todo_app.server
+python scripts/serve.py
 ```
 
 ## Docker
@@ -34,3 +35,4 @@ Open `http://localhost:8000`.
 - Persistence is browser-local only in this slice.
 - Tasks are title-only by design to avoid expanding product scope.
 - Allowed statuses are exactly `To Do`, `In Progress`, `Blocked`, and `Done`.
+- `uv sync` remains available for package-oriented workflows, but it is not required for the documented local browser run path.
