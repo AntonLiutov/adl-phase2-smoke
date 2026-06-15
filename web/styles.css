@@ -1,0 +1,345 @@
+:root {
+  color-scheme: dark;
+  --bg: oklch(0.17 0.01 240);
+  --surface: oklch(0.21 0.012 240);
+  --surface-2: oklch(0.25 0.014 240);
+  --hairline: oklch(0.31 0.014 240);
+  --ink: oklch(0.96 0.004 240);
+  --ink-muted: oklch(0.76 0.015 240);
+  --ink-subtle: oklch(0.61 0.012 240);
+  --accent: oklch(0.73 0.13 195);
+  --accent-hover: oklch(0.79 0.12 195);
+  --accent-subtle: oklch(0.73 0.13 195 / 0.18);
+  --ok: oklch(0.75 0.12 150);
+  --warn: oklch(0.8 0.12 82);
+  --err: oklch(0.68 0.16 28);
+  --todo: oklch(0.74 0.02 240);
+  --r: 10px;
+  --r-card: 16px;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s6: 24px;
+  --s8: 32px;
+  --s12: 48px;
+  --font: "Segoe UI", "Inter", system-ui, sans-serif;
+  --mono: "Consolas", "Geist Mono", ui-monospace, monospace;
+  --dur-fast: 140ms;
+  --dur-press: 90ms;
+  --dur-enter: 180ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(78, 196, 214, 0.08), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%),
+    var(--bg);
+  color: var(--ink);
+  font: 15px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.shell {
+  min-height: 100vh;
+  padding: clamp(20px, 5vw, 40px);
+  display: grid;
+  place-items: center;
+}
+
+.app {
+  width: min(100%, 880px);
+  display: grid;
+  gap: var(--s6);
+}
+
+.card {
+  background: color-mix(in oklab, var(--surface) 92%, black);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--s6);
+}
+
+.hero {
+  display: grid;
+  gap: var(--s3);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 1.6rem + 2.8vw, 4rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: 1.35rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  max-width: 56ch;
+  color: var(--ink-muted);
+}
+
+.composer,
+.task-form,
+.field,
+.list,
+.list-head,
+.task-row,
+.task-main,
+.task-actions {
+  display: grid;
+  gap: var(--s4);
+}
+
+.task-form {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.field {
+  gap: var(--s2);
+}
+
+.input,
+.status-select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    box-shadow var(--dur-fast) var(--ease-standard),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.input:focus-visible,
+.status-select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+.btn,
+.btn-ghost {
+  border-radius: var(--r);
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-standard),
+    border-color var(--dur-fast) var(--ease-standard),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.btn {
+  background: var(--accent);
+  color: #08232a;
+  font-weight: 600;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--hairline);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover,
+  .btn-ghost:hover {
+    transform: translateY(-1px);
+  }
+
+  .btn:hover {
+    background: var(--accent-hover);
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.btn:active,
+.btn-ghost:active {
+  transform: scale(0.98);
+}
+
+.feedback {
+  min-height: 1.5em;
+  color: var(--ink-muted);
+}
+
+.list-head {
+  grid-template-columns: 1fr auto;
+  align-items: end;
+}
+
+.count {
+  color: var(--ink-subtle);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s3);
+}
+
+.task-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: var(--s4);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  animation: fade-in var(--dur-enter) var(--ease-out);
+}
+
+.task-main {
+  gap: var(--s2);
+}
+
+.task-title {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  color: var(--ink-muted);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+
+.status-todo {
+  color: var(--todo);
+  background: color-mix(in oklab, var(--todo) 18%, transparent);
+  border-color: color-mix(in oklab, var(--todo) 44%, transparent);
+}
+
+.status-in-progress {
+  color: var(--accent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 44%, transparent);
+}
+
+.status-blocked {
+  color: var(--err);
+  background: color-mix(in oklab, var(--err) 14%, transparent);
+  border-color: color-mix(in oklab, var(--err) 32%, transparent);
+}
+
+.status-done {
+  color: var(--ok);
+  background: color-mix(in oklab, var(--ok) 16%, transparent);
+  border-color: color-mix(in oklab, var(--ok) 34%, transparent);
+}
+
+.task-actions {
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.status-select {
+  min-width: 164px;
+}
+
+.empty-state {
+  padding: var(--s6);
+  border: 1px dashed var(--hairline);
+  border-radius: 14px;
+  color: var(--ink-muted);
+}
+
+.is-hidden {
+  display: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    padding: var(--s4);
+  }
+
+  .task-form,
+  .task-row {
+    grid-template-columns: 1fr;
+  }
+
+  .task-actions {
+    grid-auto-flow: row;
+  }
+
+  .status-select {
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Workflow</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <main class="app card">
+        <section class="hero">
+          <p class="eyebrow">Sprint 01</p>
+          <h1>Persisted task workflow</h1>
+          <p class="lede">
+            Create tasks, update progress, and keep them available after refresh in
+            the same browser.
+          </p>
+        </section>
+
+        <section class="composer card">
+          <form class="task-form" data-task-form>
+            <label class="field">
+              <span class="eyebrow">New Task</span>
+              <input
+                class="input"
+                type="text"
+                name="title"
+                maxlength="120"
+                placeholder="Capture the next task"
+                autocomplete="off"
+                required
+              />
+            </label>
+            <button class="btn" type="submit">Add task</button>
+          </form>
+          <p class="feedback" data-feedback aria-live="polite"></p>
+        </section>
+
+        <section class="list card" aria-labelledby="task-list-heading">
+          <div class="list-head">
+            <div>
+              <p class="eyebrow">Current List</p>
+              <h2 id="task-list-heading">Tasks</h2>
+            </div>
+            <p class="count nums" data-task-count>0 tasks</p>
+          </div>
+
+          <div class="empty-state" data-empty-state>
+            <p>No tasks yet.</p>
+            <p>Add your first task to start the workflow.</p>
+          </div>
+
+          <ul class="task-list" data-task-list></ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+

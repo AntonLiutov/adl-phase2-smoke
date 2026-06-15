@@ -1,0 +1,13 @@
+[project]
+name = "persisted-task-workflow"
+version = "0.1.0"
+description = "Static to-do prototype for ADL work item F1."
+requires-python = ">=3.13"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["todo_app"]
+
