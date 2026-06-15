@@ -8,7 +8,9 @@ Work item: `F1` - Persisted Task Workflow
 - Added strict task-state validation in `web/task-store.mjs` so only `To Do`, `In Progress`, `Blocked`, and `Done` are accepted.
 - Added a browser storage adapter backed by `localStorage` so tasks survive refresh in the same browser.
 - Added a lightweight local server in `todo_app/server.py` and project metadata in `pyproject.toml`.
+- Repaired the local server so `.mjs` assets are served as `application/javascript`, which restores Chromium module loading on the documented local serve path.
 - Added focused state-logic tests in `tests/task-store.test.mjs`.
+- Added a focused server MIME test in `tests/server_test.py`.
 
 ## Intentionally Skipped
 
@@ -18,5 +20,5 @@ Work item: `F1` - Persisted Task Workflow
 ## Verification
 
 - `node --test tests/task-store.test.mjs`
+- `python -m unittest tests.server_test`
 - `uv run python -m todo_app.server`
-

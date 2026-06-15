@@ -6,9 +6,18 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 
+class StaticAppHandler(SimpleHTTPRequestHandler):
+    """Serve ES modules with a browser-valid MIME type on Windows."""
+
+    extensions_map = {
+        **SimpleHTTPRequestHandler.extensions_map,
+        ".mjs": "application/javascript",
+    }
+
+
 def main() -> None:
     web_root = Path(__file__).resolve().parent.parent / "web"
-    handler = lambda *args, **kwargs: SimpleHTTPRequestHandler(
+    handler = lambda *args, **kwargs: StaticAppHandler(
         *args,
         directory=str(web_root),
         **kwargs,
@@ -25,4 +34,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -22,6 +22,7 @@ python -m todo_app.server
 
 ```bash
 node --test tests/task-store.test.mjs
+python -m unittest tests.server_test
 ```
 
 ## Scope
@@ -31,9 +32,9 @@ Included in `F1`:
 - Remove tasks
 - Change status only among `To Do`, `In Progress`, `Blocked`, and `Done`
 - Persist tasks after refresh in the same browser
+- Serve the `.mjs` entrypoint with a browser-valid JavaScript MIME type on the documented local server path
 
 Intentionally deferred to `F2`:
 - Reordering
 - Scroll-specific overflow treatment as an acceptance target
 - Final review-grade polish/deployment work
-
