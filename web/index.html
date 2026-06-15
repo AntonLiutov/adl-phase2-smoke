@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Small App</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <main class="app-frame">
+        <section class="hero card">
+          <div class="hero-copy">
+            <p class="eyebrow">Sprint 01 / F1</p>
+            <h1>Persistent task tracking, kept intentionally narrow.</h1>
+            <p class="hero-text">
+              Add tasks, update one of four approved statuses, and remove items with
+              state stored through the application layer instead of the browser.
+            </p>
+          </div>
+          <div class="hero-stats" aria-label="Task summary">
+            <article class="stat-panel">
+              <span class="stat-label">Open tasks</span>
+              <strong class="stat-value" id="open-count">0</strong>
+            </article>
+            <article class="stat-panel">
+              <span class="stat-label">Completed</span>
+              <strong class="stat-value" id="done-count">0</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <aside class="composer card">
+            <div class="section-heading">
+              <p class="eyebrow">New Task</p>
+              <h2>Capture the next item</h2>
+              <p class="helper-copy">This sprint stores only a task title and fixed status.</p>
+            </div>
+
+            <form id="task-form" class="task-form">
+              <label class="sr-only" for="task-title">Task title</label>
+              <input
+                id="task-title"
+                class="input"
+                name="title"
+                type="text"
+                maxlength="120"
+                placeholder="Enter a task title"
+                autocomplete="off"
+                required
+              />
+              <button class="btn" type="submit">Add task</button>
+            </form>
+
+            <p class="feedback" id="form-feedback" role="status"></p>
+          </aside>
+
+          <section class="list-panel card">
+            <div class="list-header">
+              <div class="section-heading">
+                <p class="eyebrow">Task List</p>
+                <h2>Ordered backlog</h2>
+              </div>
+              <p class="helper-copy">Statuses: To Do, In Progress, Blocked, Done.</p>
+            </div>
+
+            <div class="message message-error" id="error-banner" hidden></div>
+
+            <div class="empty-state" id="empty-state" hidden>
+              <p class="empty-title">No tasks yet</p>
+              <p class="helper-copy">Add the first task to populate the persistent list.</p>
+            </div>
+
+            <ul class="task-list" id="task-list" aria-live="polite"></ul>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/assets/app.js"></script>
+  </body>
+</html>
