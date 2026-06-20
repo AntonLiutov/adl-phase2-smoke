@@ -1,14 +1,15 @@
 # Small App
 
-Frontend-only to-do prototype for work item `F1` in `sprint-01`.
+Frontend-only to-do prototype for work items `F1` and `F2` in `sprint-01` and `sprint-02`.
 
 This slice implements:
 - add a task
 - remove a task
 - change task status only between `To Do`, `In Progress`, `Blocked`, and `Done`
 - persist tasks in browser local storage and hydrate them after refresh in the same browser
-
-This slice intentionally does not implement task reordering. That work remains scoped to `F2`.
+- reorder tasks within the list with move controls
+- keep the task list inside an intentional scrollable review region
+- preserve reordered state after refresh in the same browser
 
 ## Tech shape
 

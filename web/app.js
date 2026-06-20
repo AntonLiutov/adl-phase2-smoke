@@ -8,6 +8,7 @@ const elements = {
   emptyState: document.querySelector("#empty-state"),
   taskCount: document.querySelector("#task-count"),
   doneCount: document.querySelector("#done-count"),
+  blockedCount: document.querySelector("#blocked-count"),
 };
 
 function isTaskLike(task) {
@@ -114,6 +115,9 @@ function updateSummary() {
   elements.doneCount.textContent = String(
     state.tasks.filter((task) => task.status === "Done").length,
   );
+  elements.blockedCount.textContent = String(
+    state.tasks.filter((task) => task.status === "Blocked").length,
+  );
 }
 
 function removeTask(taskId) {
@@ -136,6 +140,25 @@ function updateTaskStatus(taskId, nextStatus) {
         }
       : task,
   );
+  persistTasks(state.tasks);
+  render();
+}
+
+function moveTask(taskId, direction) {
+  const currentIndex = state.tasks.findIndex((task) => task.id === taskId);
+  if (currentIndex < 0) {
+    return;
+  }
+
+  const nextIndex = currentIndex + direction;
+  if (nextIndex < 0 || nextIndex >= state.tasks.length) {
+    return;
+  }
+
+  const reordered = [...state.tasks];
+  const [movedTask] = reordered.splice(currentIndex, 1);
+  reordered.splice(nextIndex, 0, movedTask);
+  state.tasks = reindexTasks(reordered);
   persistTasks(state.tasks);
   render();
 }
@@ -175,6 +198,25 @@ function renderTasks() {
     meta.append(statusPill, updatedAt);
     titleBlock.append(title, meta);
 
+    const actions = document.createElement("div");
+    actions.className = "task-actions";
+
+    const moveUpButton = document.createElement("button");
+    moveUpButton.className = "icon-button";
+    moveUpButton.type = "button";
+    moveUpButton.textContent = "Up";
+    moveUpButton.disabled = task.order === 0;
+    moveUpButton.setAttribute("aria-label", `Move ${task.title} up`);
+    moveUpButton.addEventListener("click", () => moveTask(task.id, -1));
+
+    const moveDownButton = document.createElement("button");
+    moveDownButton.className = "icon-button";
+    moveDownButton.type = "button";
+    moveDownButton.textContent = "Down";
+    moveDownButton.disabled = task.order === state.tasks.length - 1;
+    moveDownButton.setAttribute("aria-label", `Move ${task.title} down`);
+    moveDownButton.addEventListener("click", () => moveTask(task.id, 1));
+
     const removeButton = document.createElement("button");
     removeButton.className = "icon-button";
     removeButton.type = "button";
@@ -182,7 +224,8 @@ function renderTasks() {
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", () => removeTask(task.id));
 
-    topRow.append(titleBlock, removeButton);
+    actions.append(moveUpButton, moveDownButton, removeButton);
+    topRow.append(titleBlock, actions);
 
     const statusGroup = document.createElement("div");
     statusGroup.className = "status-group";

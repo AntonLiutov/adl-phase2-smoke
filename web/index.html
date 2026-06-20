@@ -11,11 +11,11 @@
       <main class="app-frame">
         <section class="hero card">
           <div class="hero-copy">
-            <p class="eyebrow">Sprint 01 / F1</p>
-            <h1>Keep the task list moving.</h1>
+            <p class="eyebrow">Sprint 02 / F2</p>
+            <h1>Review the queue and move priorities into place.</h1>
             <p class="hero-text">
-              Add work, adjust status, remove finished noise, and keep everything
-              available after refresh in the same browser.
+              Reorder tasks directly in the list, keep the review pane intentionally
+              scrollable, and preserve the current order after refresh.
             </p>
           </div>
 
@@ -27,6 +27,10 @@
             <article class="metric-tile">
               <span class="metric-label">Done</span>
               <strong class="metric-value" id="done-count">0</strong>
+            </article>
+            <article class="metric-tile">
+              <span class="metric-label">Blocked</span>
+              <strong class="metric-value" id="blocked-count">0</strong>
             </article>
           </div>
         </section>
@@ -56,23 +60,41 @@
             <p class="helper-copy">This prototype stores only task title and status.</p>
           </section>
 
-          <section class="list-panel card">
-            <div class="section-heading list-heading">
-              <div>
-                <p class="eyebrow">Task List</p>
-                <h2>Current queue</h2>
-              </div>
-              <p class="helper-copy">Status values are limited to the approved set.</p>
-            </div>
+          <div class="review-stack">
+            <section class="review-card card">
+              <p class="eyebrow">Review Flow</p>
+              <h2>Reorder directly from the review list</h2>
+              <p class="helper-copy">
+                Use the move controls to reprioritize tasks without leaving the review
+                pane. The saved order stays stable after refresh.
+              </p>
+            </section>
 
-            <div class="task-scroll">
-              <div class="empty-state" id="empty-state">
-                <p class="empty-title">No tasks yet</p>
-                <p class="empty-copy">Add your first item to start tracking work.</p>
+            <section class="list-panel card">
+              <div class="section-heading list-heading">
+                <div>
+                  <p class="eyebrow">Task List</p>
+                  <h2>Current queue</h2>
+                </div>
+                <p class="helper-copy">
+                  Status values remain limited to the approved set.
+                </p>
               </div>
-              <ul class="task-list" id="task-list" aria-live="polite" hidden></ul>
-            </div>
-          </section>
+
+              <div class="scroll-note" aria-hidden="true">
+                <span class="scroll-note-line"></span>
+                <span>Scrollable review region</span>
+              </div>
+
+              <div class="task-scroll" id="task-scroll">
+                <div class="empty-state" id="empty-state">
+                  <p class="empty-title">No tasks yet</p>
+                  <p class="empty-copy">Add your first item to start tracking work.</p>
+                </div>
+                <ul class="task-list" id="task-list" aria-live="polite" hidden></ul>
+              </div>
+            </section>
+          </div>
         </section>
       </main>
     </div>
