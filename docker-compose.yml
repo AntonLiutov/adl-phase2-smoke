@@ -1,0 +1,11 @@
+services:
+  web:
+    build:
+      context: .
+    container_name: agentic-task-list-prototype-web
+    image: agentic-task-list-prototype-web:latest
+    environment:
+      HOST: ${HOST:-0.0.0.0}
+      PORT: ${PORT:-8000}
+    ports:
+      - "8000:8000"

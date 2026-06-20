@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <p class="eyebrow">Sprint 01 · F1</p>
+        <h1>Task list, reduced to what matters.</h1>
+        <p class="intro">
+          Capture work, track status, and keep the list readable as it grows.
+        </p>
+
+        <form id="task-form" class="task-form">
+          <label class="sr-only" for="task-title">New task</label>
+          <input
+            id="task-title"
+            name="title"
+            type="text"
+            maxlength="120"
+            placeholder="Add a task title"
+            autocomplete="off"
+            required
+          />
+          <button type="submit">Add task</button>
+        </form>
+      </section>
+
+      <section class="board-card" aria-labelledby="task-board-title">
+        <div class="board-header">
+          <div>
+            <p class="section-label">Current list</p>
+            <h2 id="task-board-title">Tasks</h2>
+          </div>
+          <p id="task-count" class="task-count">0 tasks</p>
+        </div>
+
+        <div class="task-list-frame">
+          <ul id="task-list" class="task-list" aria-live="polite"></ul>
+          <div id="empty-state" class="empty-state">
+            <p>No tasks yet.</p>
+            <span>Add your first task to start the list.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

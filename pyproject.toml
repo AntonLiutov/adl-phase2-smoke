@@ -1,0 +1,10 @@
+[project]
+name = "task-list-prototype"
+version = "0.1.0"
+description = "Frontend-only task list prototype for sprint work item F1."
+readme = "README.md"
+requires-python = ">=3.13"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
