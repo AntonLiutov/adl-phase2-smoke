@@ -133,7 +133,7 @@ h2 {
 
 .hero-metrics {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--s4);
 }
 
@@ -164,8 +164,14 @@ h2 {
   align-items: start;
 }
 
+.review-stack {
+  display: grid;
+  gap: var(--s6);
+}
+
 .composer,
-.list-panel {
+.list-panel,
+.review-card {
   padding: var(--s6);
 }
 
@@ -235,9 +241,14 @@ h2 {
   color: var(--ink-muted);
 }
 
+.icon-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .btn:hover,
-  .icon-button:hover {
+  .icon-button:hover:not(:disabled) {
     transform: translateY(-1px);
   }
 
@@ -245,14 +256,14 @@ h2 {
     background: var(--accent-hover);
   }
 
-  .icon-button:hover {
+  .icon-button:hover:not(:disabled) {
     background: var(--surface-2);
     border-color: var(--ink-subtle);
   }
 }
 
 .btn:active,
-.icon-button:active {
+.icon-button:active:not(:disabled) {
   transform: scale(0.98);
 }
 
@@ -264,11 +275,12 @@ h2 {
 }
 
 .task-scroll {
-  margin-top: var(--s6);
+  margin-top: var(--s4);
   min-height: 420px;
   max-height: 560px;
   overflow: auto;
   padding-right: var(--s2);
+  scrollbar-gutter: stable;
 }
 
 .task-list {
@@ -286,6 +298,10 @@ h2 {
   border-radius: 14px;
   border: 1px solid var(--hairline);
   background: rgba(255, 255, 255, 0.015);
+  transition:
+    border-color var(--dur-fast) var(--ease-standard),
+    background var(--dur-fast) var(--ease-standard),
+    transform var(--dur-fast) var(--ease-standard);
 }
 
 .task-row {
@@ -308,6 +324,14 @@ h2 {
   align-items: center;
   color: var(--ink-subtle);
   font-size: 13px;
+}
+
+.task-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--s2);
+  align-items: center;
 }
 
 .status-group {
@@ -361,6 +385,23 @@ h2 {
   border-color: color-mix(in srgb, var(--done) 36%, transparent);
 }
 
+.scroll-note {
+  margin-top: var(--s5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  color: var(--ink-subtle);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.scroll-note-line {
+  width: 40px;
+  height: 1px;
+  background: var(--hairline);
+}
+
 .empty-state {
   min-height: 280px;
   display: grid;
@@ -398,10 +439,18 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
   .list-heading,
   .task-row {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .task-actions {
+    justify-content: flex-start;
   }
 
   .status-select {
